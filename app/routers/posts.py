@@ -15,7 +15,7 @@ def getPosts(db: Session = Depends(get_db),currUser: str = Depends(oauth2.curren
     # cursor.execute('''select * from posts''')
     # posts = cursor.fetchall()
     posts = db.query(models.Post).filter(models.Post.title.contains(search))
-    nvotes =db.query(func.count(models.Votes.post_id)).filter(models.Votes.post_id == models.Post.id).group_by(models.Post.id).subquery().select().scalar()
+    #nvotes =db.query(func.count(models.Votes.post_id)).filter(models.Votes.post_id == models.Post.id).group_by(models.Post.id).subquery().select().scalar()
     return posts.all()
 
 
